@@ -1,0 +1,7 @@
+#idea ignore
+.idea/
+/idea/
+*.ipr
+*.iml
+*.iws
+/out/
