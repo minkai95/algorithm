@@ -20,7 +20,7 @@ import java.util.Arrays;
  * 2:   A.length % 2 == 0
  * 3:   0 <= A[i] <= 1000
  */
-public class sortArrayByParityII {
+public class SortArrayByParityII {
 
     public static void main(String[] args) {
         System.out.println(Arrays.toString(sortArrayByParityII(new int[]{2,3,1,1,4,0,0,4,3,3})));
