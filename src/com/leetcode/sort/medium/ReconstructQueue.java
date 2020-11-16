@@ -2,6 +2,7 @@ package com.leetcode.sort.medium;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -26,10 +27,7 @@ public class ReconstructQueue {
         Arrays.sort(people, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
-                if (o1[0]!=o2[0]) {
-                    return o2[0]-o1[0];
-                }
-                return o1[1]-o2[1];
+                return o1[0]==o2[0] ? o1[1]-o2[1] : o2[0]-o1[0];
             }
         });
         // 存放结果集的栈
@@ -64,6 +62,25 @@ public class ReconstructQueue {
             people[i] = ret.get(i);
         }
         return people;
+    }
+
+    private static int[][] reconstructQueue2(int[][] people) {
+        // 先对people进行排序,按照people[0]降序,people[0]相同时people[1]升序的规则进行排序
+        Arrays.sort(people, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] == o2[0] ? o1[1] - o2[1] : o2[0] - o1[0];
+            }
+        });
+        /**
+         * LinkedList的add(int index, E element)方法,可以将待插入的元素element插入到list的索引为index的位置,原来索引index位置上的元素以及后面的元素顺位后移
+         * index要>=0,<=size()
+         */
+        LinkedList<int[]> linkedList = new LinkedList<>();
+        for (int[] arr:people) {
+            linkedList.add(arr[1],arr);
+        }
+        return linkedList.toArray(new int[linkedList.size()][2]);
     }
 
     public static void main(String[] args) {
